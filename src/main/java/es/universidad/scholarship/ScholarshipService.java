@@ -11,18 +11,19 @@ package es.universidad.scholarship;
 public class ScholarshipService {
 
     // Variables for least gpa requirement
-    public static final float gpaExcellenceRequirement = 8.5f; 
-    public static final float gpaResidenceRequirement = 6.5f; 
-    public static final float gpaLargeFamilyAndDisabilityRequirement = 5.0f; 
+    public static final float gpaExcellenceRequirement = 8.5f;
+    public static final float gpaResidenceRequirement = 6.5f;
+    public static final float gpaLargeFamilyAndDisabilityRequirement = 5.0f;
 
     // Variable for least disability requirement
     public static final float leastDisabilityDegreeRequirement = 33.f;
 
     // Variable for least number of siblings for the large family schholarship
-    public static final int leastNumSiblingsRequirement = 3; 
+    public static final int leastNumSiblingsRequirement = 3;
 
-    // Variable for least distance from campus for residence scholarship
+    // Variables for distance from campus for residence scholarship
     public static final float leastDistanceFromCampusRequirement = 50.f;
+    public static final float mostDistanceFromCampusRequirement = 20000.f;
 
     // Variables for least family income for excellence, residence and large family scholarship
     public static final float mostFamilyIncomeExcellenceRequirement = 30000.f;
@@ -71,14 +72,15 @@ public class ScholarshipService {
 
     /**
      * Checks Residence Scholarship eligibility: 6.5 &lt;= GPA &lt;= 8.4,
-     * family income &lt; 20,000, and distance &gt; 50 km.
+     * family income &lt; 20,000, and 50 km &lt; distance &lt;= 20,000 km.
      */
     public boolean meetsResidenceRequirements(StudentProfile student) {
         isValidProfile(student);
         return student.getGpa() >= gpaResidenceRequirement
                 && student.getGpa() < gpaExcellenceRequirement
                 && student.getFamilyIncome() < mostFamilyIncomeResidenceRequirement
-                && student.getDistanceFromCampus() > leastDistanceFromCampusRequirement;
+                && student.getDistanceFromCampus() > leastDistanceFromCampusRequirement
+                && student.getDistanceFromCampus() <= mostDistanceFromCampusRequirement;
     }
 
     /**
