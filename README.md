@@ -20,14 +20,14 @@ Base package: `es.universidad.scholarship`
    4. `LARGE_FAMILY` (GPA >= 5.0, family income < €15,000, and >= 3 siblings)
    5. `NONE` (when none of the above apply)
 
-2. **GPA Gap Between 8.4 and 8.5**:
-   `RESIDENCE` requires `6.5 <= GPA <= 8.4` and `EXCELLENCE` requires `GPA >= 8.5`. Consequently, a student with `8.4 < GPA < 8.5` is not eligible for either of those two scholarships (though they may still qualify for `INCLUSION` or `LARGE_FAMILY` if they meet their respective criteria).
-
-3. **Validation and Exceptions**:
+2. **GPA Boundary Between `RESIDENCE` and `EXCELLENCE` (`8.4 < GPA < 8.5`)**:
+   The original statement specifies `6.5–8.4` for `RESIDENCE` and `>= 8.5` for `EXCELLENCE`, leaving a gap between `8.4` and `8.5`. To avoid an uncovered interval, `RESIDENCE` is implemented with an exclusive upper bound of `< 8.5` (`6.5 <= GPA < 8.5`).
+   
+4. **Validation and Exceptions**:
    - `StudentProfile` does not validate in its constructor so that invalid profiles can be instantiated when testing `ScholarshipService.isValidProfile(StudentProfile)`.
    - `isValidProfile(StudentProfile)` (also invoked by `determineScholarship` and all `meets*Requirements` methods) throws `IllegalArgumentException` if the profile is `null` or any attribute is out of bounds (`gpa` outside `[0.0, 10.0]`, `familyIncome < 0`, `distanceFromCampus < 0`, `disabilityDegree` outside `[0, 100]`, or `numberOfSiblings < 0`).
 
-4. **Return Type of `determineScholarship`**:
+5. **Return Type of `determineScholarship`**:
    The shared specification listed `ScholarshipCategory` as the return type while defining the enum as `ScholarshipType`; `ScholarshipType` is used for type consistency.
 
 ## Building with Maven
