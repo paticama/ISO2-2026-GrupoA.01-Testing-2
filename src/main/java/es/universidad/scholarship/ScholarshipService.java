@@ -10,6 +10,27 @@ package es.universidad.scholarship;
  */
 public class ScholarshipService {
 
+    // Variables for least gpa requirement
+    public static final float gpaExcellenceRequirement = 8.5f; 
+    public static final float gpaResidenceRequirement = 6.5f; 
+    public static final float gpaLargeFamilyAndDisabilityRequirement = 5.0f; 
+
+    // Variable for least disability requirement
+    public static final float leastDisabilityDegreeRequirement = 33.f;
+
+    // Variable for least number of siblings for the large family schholarship
+    public static final int leastNumSiblingsRequirement = 3; 
+
+    // Variable for least distance from campus for residence scholarship
+    public static final float leastDistanceFromCampusRequirement = 50.f;
+
+    // Variables for least family income for excellence, residence and large family scholarship
+    public static final float mostFamilyIncomeExcellenceRequirement = 30000.f;
+    public static final float mostFamilyIncomeResidenceRequirement = 20000.f;
+    public static final float mostFamilyIncomeLargeFamilyRequirement = 15000.f;
+
+
+
     /**
      * Determines the single most appropriate scholarship category for the student.
      *
@@ -45,7 +66,7 @@ public class ScholarshipService {
      */
     public boolean meetsExcellenceRequirements(StudentProfile student) {
         isValidProfile(student);
-        return student.getGpa() >= 8.5 && student.getFamilyIncome() < 30000.0;
+        return student.getGpa() >= gpaExcellenceRequirement && student.getFamilyIncome() < mostFamilyIncomeExcellenceRequirement;
     }
 
     /**
@@ -54,10 +75,10 @@ public class ScholarshipService {
      */
     public boolean meetsResidenceRequirements(StudentProfile student) {
         isValidProfile(student);
-        return student.getGpa() >= 6.5
-                && student.getGpa() <= 8.4
-                && student.getFamilyIncome() < 20000.0
-                && student.getDistanceFromCampus() > 50.0;
+        return student.getGpa() >= gpaResidenceRequirement
+                && student.getGpa() < gpaExcellenceRequirement
+                && student.getFamilyIncome() < mostFamilyIncomeResidenceRequirement
+                && student.getDistanceFromCampus() > leastDistanceFromCampusRequirement;
     }
 
     /**
@@ -66,9 +87,9 @@ public class ScholarshipService {
      */
     public boolean meetsLargeFamilyRequirements(StudentProfile student) {
         isValidProfile(student);
-        return student.getGpa() >= 5.0
-                && student.getFamilyIncome() < 15000.0
-                && student.getNumberOfSiblings() >= 3;
+        return student.getGpa() >= gpaLargeFamilyAndDisabilityRequirement
+                && student.getFamilyIncome() < mostFamilyIncomeLargeFamilyRequirement
+                && student.getNumberOfSiblings() >= leastNumSiblingsRequirement;
     }
 
     /**
@@ -76,7 +97,7 @@ public class ScholarshipService {
      */
     public boolean meetsInclusionRequirements(StudentProfile student) {
         isValidProfile(student);
-        return student.getDisabilityDegree() >= 33 && student.getGpa() >= 5.0;
+        return student.getDisabilityDegree() >= leastDisabilityDegreeRequirement && student.getGpa() >= gpaLargeFamilyAndDisabilityRequirement;
     }
 
     /**
