@@ -1,10 +1,7 @@
 package es.universidad.scholarship;
 
-import java.util.Objects;
-
 /**
- * Immutable domain model representing a university student's profile data
- * used to evaluate scholarship eligibility.
+ * Immutable domain model representing a university student's profile data.
  */
 public final class StudentProfile {
 
@@ -15,13 +12,13 @@ public final class StudentProfile {
     private final int numberOfSiblings;
 
     /**
-     * Creates a new immutable student profile.
+     * Creates a new student profile.
      *
-     * @param gpa                student grade point average (expected range 0.0 to 10.0)
-     * @param familyIncome       annual family income in euros (expected &gt;= 0.0)
-     * @param distanceFromCampus distance from home to campus in km (expected &gt;= 0.0)
-     * @param disabilityDegree   certified disability percentage (expected range 0 to 100)
-     * @param numberOfSiblings   number of siblings (expected &gt;= 0)
+     * @param gpa                grade point average (0.0 to 10.0)
+     * @param familyIncome       annual family income in euros (&gt;= 0)
+     * @param distanceFromCampus distance from home to campus in km (&gt;= 0)
+     * @param disabilityDegree   certified disability percentage (0 to 100)
+     * @param numberOfSiblings   number of siblings (&gt;= 0)
      */
     public StudentProfile(double gpa,
                           double familyIncome,
@@ -53,36 +50,5 @@ public final class StudentProfile {
 
     public int getNumberOfSiblings() {
         return numberOfSiblings;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof StudentProfile that)) {
-            return false;
-        }
-        return Double.compare(that.gpa, gpa) == 0
-                && Double.compare(that.familyIncome, familyIncome) == 0
-                && Double.compare(that.distanceFromCampus, distanceFromCampus) == 0
-                && disabilityDegree == that.disabilityDegree
-                && numberOfSiblings == that.numberOfSiblings;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(gpa, familyIncome, distanceFromCampus, disabilityDegree, numberOfSiblings);
-    }
-
-    @Override
-    public String toString() {
-        return "StudentProfile{"
-                + "gpa=" + gpa
-                + ", familyIncome=" + familyIncome
-                + ", distanceFromCampus=" + distanceFromCampus
-                + ", disabilityDegree=" + disabilityDegree
-                + ", numberOfSiblings=" + numberOfSiblings
-                + '}';
     }
 }
