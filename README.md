@@ -25,7 +25,7 @@ Base package: `es.universidad.scholarship`
 
 3. **Validation and Exceptions**:
    - `StudentProfile` does not validate in its constructor so that invalid profiles can be instantiated when testing `ScholarshipService.isValidProfile(StudentProfile)`.
-   - `isValidProfile(StudentProfile)` (also invoked by `determineScholarship` and all `meets*Requirements` methods) throws `IllegalArgumentException` if the profile is `null` or any attribute is out of bounds (`gpa` outside `[0.0, 10.0]` or `NaN`, `familyIncome < 0` or non-finite, `distanceFromCampus < 0` or non-finite, `disabilityDegree` outside `[0, 100]`, or `numberOfSiblings < 0`).
+   - `isValidProfile(StudentProfile)` (also invoked by `determineScholarship` and all `meets*Requirements` methods) throws `IllegalArgumentException` if the profile is `null` or any attribute is out of bounds (`gpa` outside `[0.0, 10.0]`, `familyIncome < 0`, `distanceFromCampus < 0`, `disabilityDegree` outside `[0, 100]`, or `numberOfSiblings < 0`).
 
 4. **Return Type of `determineScholarship`**:
    The shared specification listed `ScholarshipCategory` as the return type while defining the enum as `ScholarshipType`; `ScholarshipType` is used for type consistency.
