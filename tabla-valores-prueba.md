@@ -1,4 +1,4 @@
-# Tabla de valores de prueba
+# Testing Units
 
 | Método | Partición equivalente | Valores límite | Conjetura de errores | Total |
 |---|---|---|---|---|
