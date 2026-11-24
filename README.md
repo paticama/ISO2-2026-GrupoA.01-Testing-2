@@ -1,6 +1,6 @@
 # ISO2-2026-GrupoA.01-Testing-2
 
-Maven implementation of **Problem 2 (ET.02.03 - Second Problem: Scholarship Calculation)** for the Software Engineering 2 assignment (Step 1: *Implement the Program*).
+Pair 2: Åsta & Victoria - Maven implementation of **Problem 2 (ET.02.03 - Second Problem: Scholarship Calculation)** for the Software Engineering 2 assignment (Step 1: *Implement the Program*).
 
 ## Project Structure
 
